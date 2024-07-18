@@ -21,8 +21,8 @@
 
 #pragma once
 
-#include <sse/crypto/key.hpp>
-#include <sse/crypto/prf.hpp>
+#include "key.hpp"
+#include "prf.hpp"
 
 #include <cstdint>
 #include <cstring>

@@ -406,7 +406,7 @@ G2 operator+(const G2& x, const G2& y)
     G2 z;
     RELICXX_G2unconst(x, x1);
     RELICXX_G2unconst(y, y1);
-    {g2_add(z.g, x1.g, y1.g)} g2_norm(z.g, z.g);
+    {g2_add(z.g, x1.g, y1.g);} g2_norm(z.g, z.g);
     return z;
 }
 
@@ -556,7 +556,7 @@ GT power(const GT& g, const ZR& zr)
     }
 
     {
-        gt_exp(gt.g, gg.g, zr1.z)
+        gt_exp(gt.g, gg.g, zr1.z);
     }
     return gt;
 }
@@ -587,7 +587,7 @@ bool GT::ismember(bn_t order)
     gt_t r;
     gt_inits(r);
     {
-        gt_exp(r, g, order)
+        gt_exp(r, g, order);
     }
     if (gt_is_unity(r) == 1) {
         result = true;

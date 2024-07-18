@@ -60,6 +60,9 @@ find_package(Sanitizers)
 # We use CMake's integrated testing features
 enable_testing()
 
+# gai
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
+
 if(opensse_ENABLE_WALL)
     save_compile_option(-Wall)
 endif()
@@ -122,7 +125,7 @@ if(opensse_ENABLE_ADVANCED_WARNINGS)
         -Wno-unused-macros
         -Wno-padded
         # New to MacOs
-        -Wno-poison-system-directories
+        # -Wno-poison-system-directories
     )
 
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
