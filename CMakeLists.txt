@@ -62,6 +62,7 @@ enable_testing()
 
 # gai
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=old-style-cast")
 
 if(opensse_ENABLE_WALL)
     save_compile_option(-Wall)

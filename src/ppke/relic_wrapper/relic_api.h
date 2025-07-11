@@ -28,8 +28,10 @@
 extern "C" {
 #endif
 
-#include <relic/relic.h>
-#include <relic/relic_conf.h>
+// #include <relic/relic.h>
+// #include <relic/relic_conf.h>
+#include "/opt/og/fides_relic/include/relic/relic.h"
+#include "/opt/og/fides_relic/include/relic/relic_conf.h"
 
 #ifdef __cplusplus
 }

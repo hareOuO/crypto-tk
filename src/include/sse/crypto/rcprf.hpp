@@ -21,8 +21,8 @@
 
 #pragma once
 
-#include <sse/crypto/key.hpp>
-#include <sse/crypto/prg.hpp>
+#include "key.hpp"
+#include "prg.hpp"
 
 #include <cassert>
 #include <cstring>
@@ -1329,6 +1329,25 @@ public:
             {((NBYTES >> 8) & 0xFF), (NBYTES & 0XFF)}};
     }
 
+    //gai
+    size_t getSerializedSize() const noexcept 
+    {
+        return serialized_size();  // 调用私有的serialized_size函数
+    }
+    void serializePublic(uint8_t* out) const 
+    {
+        serialize(out);  // 调用私有的serialize函数
+    }
+
+    // 公共接口：反序列化
+    static ConstrainedRCPrf<NBYTES> deserializePublic(
+        uint8_t* in,
+        const size_t in_size,
+        size_t& n_bytes_read) {
+        return deserialize(in, in_size, n_bytes_read);  // 调用私有的deserialize函数
+    }
+
+
 private:
     std::vector<std::unique_ptr<ConstrainedRCPrfElement<NBYTES>>> elements_;
 
@@ -1498,8 +1517,7 @@ void ConstrainedRCPrf<NBYTES>::serialize(uint8_t* out) const
     // = this->tree_height();
 
     RCPrfParams::depth_type th = this->tree_height();
-    memcpy(offset_out, &th,
-           sizeof(RCPrfParams::depth_type)); // the tree depth
+    memcpy(offset_out, &th,sizeof(RCPrfParams::depth_type)); // the tree depth
     offset_out += sizeof(RCPrfParams::depth_type);
 
     // *(reinterpret_cast<uint32_t*>(offset_out)) = elements_.size();

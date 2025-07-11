@@ -9,6 +9,13 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/modules")
 
 find_package(Sodium REQUIRED)
 find_package(OpenSSL 1.0.0) # Optional
+
+# gai
+# 设置 relic 的库路径
+set(CMAKE_PREFIX_PATH "/opt/og/fides_relic")
+# 显式设置 include 路径优先级
+include_directories(BEFORE /opt/og/fides_relic/include)
+
 find_package(relic REQUIRED)
 find_package(LibGmp REQUIRED)
 
